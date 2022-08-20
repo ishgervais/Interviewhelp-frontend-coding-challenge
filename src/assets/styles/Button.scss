@@ -1,0 +1,46 @@
+.button {
+    background: #F6F6F6;
+    border-radius: 6px;
+    width: 294px;
+    height: 72px;
+    padding: 14px;
+
+    .meaning {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+
+        /* identical to box height */
+
+        color: #000000;
+    }
+
+    .description {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+
+        color: #7E7A85;
+        place-items: center;
+    }
+
+    svg {
+        margin-bottom: 5px;
+    }
+
+    &.active {
+
+        .meaning,
+        .description {
+            color: #27AE60;
+        }
+
+        svg {
+            fill: #27AE60;
+        }
+    }
+}

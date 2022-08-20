@@ -4,14 +4,22 @@ import Button from './components/Button'
 import Loader from './components/Loader';
 import UserCard from './components/UserCard';
 import { FormatedUserRecord, UserLog, UserRecord, UserRecords } from './types';
+import { config } from "react-spring";
+import VerticalCarousel from "./components/VerticalCarousel.jsx";
 
 function App() {
 
   const [users, setUsers] = useState<UserRecord[]>();
   const [formatedUsers, setFormatedUsers] = useState<FormatedUserRecord[]>([]);
   const [userLogs, setUserLogs] = useState<UserLog[]>([]);
-  const [offSets, setOffsets] = useState<string[]>([]);
+  const [slides, setSlides] = useState<{ key: number, content: string, offset?: string }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sliderOptions, setSliderOptions] = useState({
+    goToSlide: 0,
+    offsetRadius: 2,
+    showNavigation: true,
+    config: config.gentle
+  });
 
   const TABLE_BASE_API_URL = 'https://api.airtable.com/v0/appBTaX8XIvvr6zEC/Users';
   const API_KEY = 'key4v56MUqVr9sNJv';
@@ -28,14 +36,19 @@ function App() {
 
   const loadUsers = async () => {
     setIsLoading(true);
-    const data = await fetch(`${TABLE_BASE_API_URL}?maxRecords=3&view=Grid%20view`, {
+    const data = await fetch(`${TABLE_BASE_API_URL}?maxRecords=6&view=Grid%20view`, {
       headers: {
         Authorization: `Bearer ${API_KEY}`
       }
     });
     const res: UserRecords = await data.json();
     setUsers(res.records);
-    setOffsets([...offSets, res.offset]);
+    // let index = slides.length + 1;
+    // const newSlides = [...slides, { key: index, content: index.toString(), offset: res.offset }];
+    // if (res.offset) {
+    //   newSlides.push({ key: index + 1, content: (index + 1).toString() });
+    // }
+    // setSlides(newSlides);
   }
 
   const formatUsers = async () => {
@@ -97,7 +110,6 @@ function App() {
   }, [users])
 
   const sortData = (order: string, target: string) => {
-    console.log(order, target);
     setFormatedUsers([...formatedUsers]?.sort((a, b) => {
       if (order === "ASC") {
         return target === "Name" ? a[target] > b[target] : a[target] - b[target];
@@ -128,7 +140,12 @@ function App() {
       </div>
       <div className="users-container flex">
         <div className="pagination-indicator-container">
-
+          {/* <VerticalCarousel
+            slides={slides}
+            offsetRadius={sliderOptions.offsetRadius}
+            showNavigation={sliderOptions.showNavigation}
+            animationConfig={sliderOptions.config}
+          /> */}
         </div>
         {
           isLoading ?

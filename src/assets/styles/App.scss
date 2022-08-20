@@ -26,6 +26,18 @@
     }
 }
 
+.css-rypcbb {
+    width: 50px !important;
+}
+
+.css-w9hylb {
+    width: 80px !important;
+    height: 28% !important;
+    background: #2d73a2 !important;
+    margin-left: 20px !important;
+    cursor: pointer;
+}
+
 /* Portrait phones and smaller */
 @media (max-width: 1000px) {
     .App {
@@ -49,6 +61,18 @@
                 height: 428px;
             }
         }
+    }
+
+    .css-rypcbb {
+        height: 40% !important;
+        position: fixed !important;
+        z-index: 9 !important;
+        bottom: 120px !important;
+    }
+
+    .css-1tgttj {
+        position: fixed !important;
+        bottom: 50px !important;
     }
 }
 

@@ -96,18 +96,34 @@ function App() {
     }
   }, [users])
 
-  const sortData = (order: string) => {
-    console.log(order);
+  const sortData = (order: string, target: string) => {
+    console.log(order, target);
+    setFormatedUsers([...formatedUsers]?.sort((a, b) => {
+      if (order === "ASC") {
+        return target === "Name" ? a[target] > b[target] : a[target] - b[target];
+      } else {
+        return target === "Name" ? b[target] > a[target] : b[target] - a[target];
+      }
+    }
+    ));
   }
 
   return (
     <div className="App h-screen">
       <div className="header">
         <div className="md:flex flex-wrap mx-auto md:mx-0 w-fit">
-          <Button description='Sort by name' handleOrderChange={sortData} />
-          <Button description='Sort by name' handleOrderChange={sortData} />
-          <Button description='Sort by name' handleOrderChange={sortData} />
-          <Button description='Sort by name' handleOrderChange={sortData} />
+          <Button description='Sort by name' handleOrderChange={(order: string) => {
+            sortData(order, "Name");
+          }} />
+          <Button description='Sort by impressions' handleOrderChange={(order: string) => {
+            sortData(order, "totalImpresions");
+          }} />
+          <Button description='Sort by conversions' handleOrderChange={(order: string) => {
+            sortData(order, "totalConversions");
+          }} />
+          <Button description='Sort by revenue' handleOrderChange={(order: string) => {
+            sortData(order, "totalRevenue");
+          }} />
         </div>
       </div>
       <div className="users-container flex">

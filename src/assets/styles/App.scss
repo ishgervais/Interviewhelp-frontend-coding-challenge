@@ -20,7 +20,7 @@
 
     .users-container {
         .pagination-indicator-container {
-            width: 100px;
+            width: 50px;
             height: 428px;
         }
     }
@@ -40,6 +40,13 @@
                 &:first-child {
                     margin: 0 0 30px;
                 }
+            }
+        }
+
+        .users-container {
+            .pagination-indicator-container {
+                width: 0px;
+                height: 428px;
             }
         }
     }

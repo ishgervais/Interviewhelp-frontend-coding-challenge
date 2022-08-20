@@ -6,7 +6,7 @@ import { FormatedUserRecord } from "../types";
 function UserCard(props: { key: any, data: FormatedUserRecord }) {
 
     return (
-        <div className="user-card ml-0 md:ml-8 mb-8 flex relative">
+        <div className="user-card md:ml-8 mb-8 flex relative">
             <div className="graphical-data">
                 <div className="flex">
                     <div className={`avatar ${props.data.avatar ? '' : 'no-pic'}`} style={props.data.avatar ? {

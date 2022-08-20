@@ -117,7 +117,7 @@ function App() {
         {
           isLoading ?
             <Loader /> :
-            <div className="card-container flex flex-wrap ml-auto mt-28">
+            <div className="card-container flex flex-wrap mx-auto mt-28">
               {
                 formatedUsers.map((user: any) =>
                   <UserCard

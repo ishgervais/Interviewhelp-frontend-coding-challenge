@@ -5,45 +5,11 @@ import { FormatedUserRecord } from "../types";
 
 function UserCard(props: { key: any, data: FormatedUserRecord }) {
 
-    const [chardData, setChartData] = useState({
-        options: {
-            chart: {
-                id: "basic-bar",
-                toolbar: {
-                    show: false,
-                },
-            },
-            grid: {
-                show: false,
-            },
-            stroke: {
-                curve: 'smooth',
-            },
-            xaxis: {
-                labels: {
-                    show: false
-                },
-                categories: ["2013-04-24 19:20:09", "2013-04-25 19:20:09", "2013-04-26 19:20:09", "2013-04-27 19:20:09", "2013-04-28 19:20:09", "2013-04-29 19:20:09", "2013-04-30 19:20:09", "2013-05-01 19:20:09"]
-            },
-            yaxis: {
-                labels: {
-                    show: false
-                },
-            }
-        },
-        series: [
-            {
-                name: "conversions",
-                data: [12, 2, 6, 89, 3, 5, 9, 43]
-            }
-        ]
-    })
-
     return (
         <div className="user-card ml-0 md:ml-8 mb-8 flex relative">
             <div className="graphical-data">
                 <div className="flex">
-                    <div className="avatar" style={props.data.avatar ? {
+                    <div className={`avatar ${props.data.avatar ? '' : 'no-pic'}`} style={props.data.avatar ? {
                         backgroundImage: `url(${props.data.avatar})`
                     } : {}}>
                         {props.data.avatar ? "" : props.data.Name[0]}
@@ -101,7 +67,7 @@ function UserCard(props: { key: any, data: FormatedUserRecord }) {
                 <div className="label">impressions</div>
                 <div className="conversions">{props.data.totalConversions}</div>
                 <div className="label">conversions</div>
-                <div className="revenue">${props.data.totalRevenue}</div>
+                <div className="revenue">${((num) => Math.round(num * 100) / 100)(props.data.totalRevenue)}</div>
             </div>
         </div>
     )

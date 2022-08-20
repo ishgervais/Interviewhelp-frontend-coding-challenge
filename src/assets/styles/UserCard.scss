@@ -45,6 +45,15 @@
             object-fit: cover;
             margin-right: 15px;
             margin-bottom: 10px;
+
+            &.no-pic {
+                background: #3498DB;
+                display: flex;
+                place-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 29px;
+            }
         }
 
         .apexcharts-svg.apexcharts-zoomable.hovering-zoom {

@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import './assets/styles/App.scss'
 import Button from './components/Button'
 import UserCard from './components/UserCard';
-import { UserRecord } from './types';
+import { FormatedUserRecord, UserLog, UserRecord } from './types';
 
 function App() {
 
   const [users, setUsers] = useState<UserRecord>();
-  const [formatedUsers, setFormatedUsers] = useState<any>();
+  const [formatedUsers, setFormatedUsers] = useState<FormatedUserRecord[]>([]);
+  const [userLogs, setUserLogs] = useState<UserLog>();
 
   useEffect(() => {
     setFormatedUsers([{
@@ -18,7 +19,9 @@ function App() {
       totalImpresions: 100,
       totalConversions: 10,
       totalRevenue: 1000,
-      charSummary: "Conversions 4/12 - 4/30"
+      chartSummary: "Conversions 4/12 - 4/30",
+      categories: ["2013-04-24 19:20:09", "2013-04-25 19:20:09", "2013-04-26 19:20:09", "2013-04-27 19:20:09", "2013-04-28 19:20:09", "2013-04-29 19:20:09", "2013-04-30 19:20:09", "2013-05-01 19:20:09"],
+      series: [12, 2, 6, 89, 3, 5, 9, 43]
     },
     {
       Name: 'John K. Martinez',
@@ -28,7 +31,9 @@ function App() {
       totalImpresions: 100,
       totalConversions: 10,
       totalRevenue: 1000,
-      charSummary: "Conversions 4/12 - 4/30"
+      chartSummary: "Conversions 4/12 - 4/30",
+      categories: ["2013-04-24 19:20:09", "2013-04-25 19:20:09", "2013-04-26 19:20:09", "2013-04-27 19:20:09", "2013-04-28 19:20:09", "2013-04-29 19:20:09", "2013-04-30 19:20:09", "2013-05-01 19:20:09"],
+      series: [12, 2, 6, 89, 3, 5, 9, 43]
     },
     {
       Name: 'John K. Martinez',
@@ -38,7 +43,9 @@ function App() {
       totalImpresions: 100,
       totalConversions: 10,
       totalRevenue: 1000,
-      charSummary: "Conversions 4/12 - 4/30"
+      chartSummary: "Conversions 4/12 - 4/30",
+      categories: ["2013-04-24 19:20:09", "2013-04-25 19:20:09", "2013-04-26 19:20:09", "2013-04-27 19:20:09", "2013-04-28 19:20:09", "2013-04-29 19:20:09", "2013-04-30 19:20:09", "2013-05-01 19:20:09"],
+      series: [12, 2, 6, 89, 3, 5, 9, 43]
     },
     {
       Name: 'John K. Martinez',
@@ -48,7 +55,9 @@ function App() {
       totalImpresions: 100,
       totalConversions: 10,
       totalRevenue: 1000,
-      charSummary: "Conversions 4/12 - 4/30"
+      chartSummary: "Conversions 4/12 - 4/30",
+      categories: ["2013-04-24 19:20:09", "2013-04-25 19:20:09", "2013-04-26 19:20:09", "2013-04-27 19:20:09", "2013-04-28 19:20:09", "2013-04-29 19:20:09", "2013-04-30 19:20:09", "2013-05-01 19:20:09"],
+      series: [12, 2, 6, 89, 3, 5, 9, 43]
     }
     ])
   }, [])
@@ -76,14 +85,7 @@ function App() {
             formatedUsers.map((user: any) =>
               <UserCard
                 key={user.id}
-                Name={user.Name}
-                avatar={user.avatar}
-                occupation={user.occupation}
-                totalConversions={user.totalConversions}
-                totalImpresions={user.totalImpresions}
-                totalRevenue={user.totalRevenue}
-                id={user.id}
-                chartSummary={user.charSummary}
+                data={user}
               />)
           }
         </div>

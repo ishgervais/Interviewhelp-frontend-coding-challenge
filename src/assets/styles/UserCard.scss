@@ -1,0 +1,89 @@
+.user-card {
+    border: 1px solid #110825;
+    box-shadow: 11px 6px 10px 5px rgba(123, 210, 195, 0.16);
+    border-radius: 12px;
+    width: 386px;
+    height: 227px;
+    background: #FFFFFF;
+    padding: 20px;
+
+    .graphical-data {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+
+        .names {
+            font-weight: 500;
+            font-size: 23px;
+            line-height: 28px;
+            color: #2C3E50;
+            margin-bottom: 9px;
+            position: absolute;
+        }
+
+        .occupation {
+            font-size: 17px;
+            line-height: 21px;
+            color: #95A5A6;
+            margin-top: 37px;
+        }
+
+        .summary {
+            font-size: 14px;
+            line-height: 17px;
+            color: #868686;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .avatar {
+            border-radius: 40px;
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            object-fit: cover;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+
+        .apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+            margin-left: -21px;
+        }
+    }
+
+    .text-data {
+        padding-top: 38px;
+        width: 30%;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 21px;
+
+        div {
+            margin-bottom: 6px;
+        }
+
+        .impressions {
+            color: #E67E22;
+        }
+
+        .conversions {
+            color: #2E83BA;
+        }
+
+        .revenue {
+            font-weight: 600;
+            color: #27AE60;
+        }
+
+        .label {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            color: #99A7AF;
+            margin-bottom: 15px;
+        }
+    }
+}

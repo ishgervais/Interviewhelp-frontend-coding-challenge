@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 .App {
+    background-color: #F6F6F6;
+
     .header {
         width: 100%;
         min-height: 122px;
@@ -11,6 +15,13 @@
             &:first-child {
                 margin: 0;
             }
+        }
+    }
+
+    .users-container {
+        .pagination-indicator-container {
+            width: 100px;
+            height: 428px;
         }
     }
 }

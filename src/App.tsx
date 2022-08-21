@@ -26,14 +26,9 @@ function App() {
   const API_KEY = 'key4v56MUqVr9sNJv';
 
   const loadUserLogs = async () => {
-    // I could use the data directly from the api but it's returning a cors error so I'm using the json file instead
-    // fetch("https://assets.interviewhelp.io/INTERVIEW_HELP/reactjs/logs.json");
-
-    // locally use 
-    // fetch('/src/assets/logs.json')
-
-
-    fetch("https://assets.interviewhelp.io/INTERVIEW_HELP/reactjs/logs.json")
+    // I could use the data directly from the api but it's returning a cors error
+    // const data = await fetch("https://assets.interviewhelp.io/INTERVIEW_HELP/reactjs/logs.json");
+    fetch('/logs.json')
       .then((res) => res.json())
       .then((data) => {
         setUserLogs(data);
@@ -63,13 +58,10 @@ function App() {
         setSlides([{ key: index, content: index.toString() }]);
     }
     setTimeout(() => {
-      setCurrentOffset(slides[slides.length - 1].offset);
+      if (slides[slides.length - 1])
+        setCurrentOffset(slides[slides.length - 1].offset);
     }, 500);
   }
-
-  useEffect(() => {
-    console.log(slides)
-  }, [slides])
 
   const formatUsers = async () => {
     if (!users) return;

@@ -97,7 +97,6 @@ function VerticalCarousel(props: {
 
     const getPresentableSlides = () => {
         const { slides } = props;
-        console.log('\n\n\n', slides)
         let { offsetRadius } = props;
         offsetRadius = clampOffsetRadius(offsetRadius);
         const presentableSlides = new Array();

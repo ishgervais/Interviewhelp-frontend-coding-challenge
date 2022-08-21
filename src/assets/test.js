@@ -1,4 +1,4 @@
-import Data from './logs.json' assert { type: "json" }
+import Data from '../../public/logs.json' assert { type: "json" }
 const verifySolution = (userId, date) => {
     let totalConversions = 0;
     let totalImpressions = 0;

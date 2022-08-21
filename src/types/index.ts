@@ -34,3 +34,5 @@ export type UserLog = {
     type: string;
     revenue: number;
 }
+
+export type Slide = { key: number, content: string, offset?: string }

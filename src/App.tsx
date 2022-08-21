@@ -3,14 +3,24 @@ import './assets/styles/App.scss'
 import Button from './components/Button'
 import Loader from './components/Loader';
 import UserCard from './components/UserCard';
-import { FormatedUserRecord, UserLog, UserRecord, UserRecords } from './types';
+import { FormatedUserRecord, Slide, UserLog, UserRecord, UserRecords } from './types';
+import { config } from "react-spring";
+import VerticalCarousel from "./components/VerticalCarousel";
 
 function App() {
 
   const [users, setUsers] = useState<UserRecord[]>();
   const [formatedUsers, setFormatedUsers] = useState<FormatedUserRecord[]>([]);
   const [userLogs, setUserLogs] = useState<UserLog[]>([]);
+  const [slides, setSlides] = useState<Slide[]>([]);
+  const [tempSlides, setTempSlides] = useState<Slide[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sliderOptions, setSliderOptions] = useState({
+    goToSlide: 0,
+    offsetRadius: 2,
+    showNavigation: true,
+    config: config.gentle
+  });
 
   const TABLE_BASE_API_URL = 'https://api.airtable.com/v0/appBTaX8XIvvr6zEC/Users';
   const API_KEY = 'key4v56MUqVr9sNJv';
@@ -25,16 +35,31 @@ function App() {
       })
   }
 
-  const loadUsers = async () => {
+  const loadUsers = async (offset?: string) => {
     setIsLoading(true);
-    const data = await fetch(`${TABLE_BASE_API_URL}?maxRecords=6&view=Grid%20view`, {
+    const data = await fetch(`${TABLE_BASE_API_URL}?pageSize=6&view=Grid%20view${offset ? '&offset=' + offset : ''}`, {
       headers: {
         Authorization: `Bearer ${API_KEY}`
       }
     });
     const res: UserRecords = await data.json();
     setUsers(res.records);
+    let index = slides.length + 1;
+
+    if (slides.length) {
+      if (res.offset)
+        setSlides([...slides, { key: index, content: index.toString(), offset: res.offset }]);
+    } else {
+      if (res.offset)
+        setSlides([{ key: index, content: index.toString() }, { key: (index + 1), content: (index + 1).toString(), offset: res.offset }]);
+      else
+        setSlides([{ key: index, content: index.toString() }]);
+    }
   }
+
+  useEffect(() => {
+    console.log(slides)
+  }, [slides])
 
   const formatUsers = async () => {
     if (!users) return;
@@ -155,6 +180,13 @@ function App() {
       </div>
       <div className="users-container flex">
         <div className="pagination-indicator-container">
+          <VerticalCarousel
+            slides={slides}
+            offsetRadius={sliderOptions.offsetRadius}
+            showNavigation={sliderOptions.showNavigation}
+            animationConfig={sliderOptions.config}
+            handleClick={loadUsers}
+          />
         </div>
         {
           isLoading ?

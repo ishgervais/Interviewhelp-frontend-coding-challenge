@@ -13,7 +13,7 @@ function App() {
   const [formatedUsers, setFormatedUsers] = useState<FormatedUserRecord[]>([]);
   const [userLogs, setUserLogs] = useState<UserLog[]>([]);
   const [slides, setSlides] = useState<Slide[]>([]);
-  const [tempSlides, setTempSlides] = useState<Slide[]>([]);
+  const [currentOffset, setCurrentOffset] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [sliderOptions, setSliderOptions] = useState({
     goToSlide: 0,
@@ -36,6 +36,8 @@ function App() {
   }
 
   const loadUsers = async (offset?: string) => {
+    if (offset === currentOffset && slides.length) return;
+    
     setIsLoading(true);
     const data = await fetch(`${TABLE_BASE_API_URL}?pageSize=6&view=Grid%20view${offset ? '&offset=' + offset : ''}`, {
       headers: {
@@ -47,7 +49,7 @@ function App() {
     let index = slides.length + 1;
 
     if (slides.length) {
-      if (res.offset)
+      if (res.offset && !slides.find(slide => slide.offset === res.offset))
         setSlides([...slides, { key: index, content: index.toString(), offset: res.offset }]);
     } else {
       if (res.offset)
@@ -55,6 +57,9 @@ function App() {
       else
         setSlides([{ key: index, content: index.toString() }]);
     }
+    setTimeout(() => {
+      setCurrentOffset(slides[slides.length - 1].offset);
+    }, 500);
   }
 
   useEffect(() => {

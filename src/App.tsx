@@ -70,11 +70,12 @@ function App() {
 
     for (const user of formattedUsers) {
       user.categories = Object.keys(user.conversionsMap);
-      user.series = Object.values(user.conversionsMap);
+      user.categories.sort();
+      user.series = user.categories.map((date) => user.conversionsMap[date]);
 
       const startDate = new Date(user.categories[0]);
       const endDate = new Date(user.categories[user.categories.length - 1]);
-      user.chartSummary = `${startDate.getMonth()}/${startDate.getDate()} - ${endDate.getMonth()}/${endDate.getDate()}`;
+      user.chartSummary = `${startDate.getMonth() + 1}/${startDate.getDate()} - ${endDate.getMonth() + 1}/${endDate.getDate()}`;
     }
     setFormatedUsers(formattedUsers);
     setIsLoading(false);
@@ -96,10 +97,39 @@ function App() {
 
   const sortData = (order: string, target: string) => {
     setFormatedUsers([...formatedUsers]?.sort((a, b) => {
+
       if (order === "ASC") {
-        return target === "Name" ? a[target] > b[target] : a[target] - b[target];
+
+        switch (target) {
+          case "Name":
+            return a[target] > b[target] ? 1 : 0;
+          case "totalConversions":
+            return a.totalConversions - b.totalConversions;
+          case "totalImpresions":
+            return a.totalImpresions - b.totalImpresions;
+          case "totalRevenue":
+            return a.totalRevenue - b.totalRevenue;
+          default:
+            return 0;
+            break;
+        }
+
       } else {
-        return target === "Name" ? b[target] > a[target] : b[target] - a[target];
+
+        switch (target) {
+          case "Name":
+            return b[target] > a[target] ? 1 : 0;
+          case "totalConversions":
+            return b.totalConversions - a.totalConversions;
+          case "totalImpresions":
+            return b.totalImpresions - a.totalImpresions;
+          case "totalRevenue":
+            return b.totalRevenue - a.totalRevenue;
+          default:
+            return 0;
+            break;
+        }
+
       }
     }
     ));

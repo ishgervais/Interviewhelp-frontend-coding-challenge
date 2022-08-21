@@ -129,7 +129,7 @@ function App() {
 
         switch (target) {
           case "Name":
-            return a[target] > b[target] ? 1 : 0;
+            return a.Name.localeCompare(b.Name);
           case "totalConversions":
             return a.totalConversions - b.totalConversions;
           case "totalImpresions":
@@ -145,7 +145,7 @@ function App() {
 
         switch (target) {
           case "Name":
-            return b[target] > a[target] ? 1 : 0;
+            return b.Name.localeCompare(a.Name);
           case "totalConversions":
             return b.totalConversions - a.totalConversions;
           case "totalImpresions":

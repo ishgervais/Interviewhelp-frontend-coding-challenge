@@ -107,4 +107,9 @@ function Slide({
     );
 }
 
-export default withGesture()(Slide);
+export default withGesture({
+    touch: true,
+    mouse: true,
+    passive: { passive: true },
+    // @ts-ignore
+})(Slide);

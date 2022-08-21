@@ -126,6 +126,7 @@ function VerticalCarousel(props: {
                 {getPresentableSlides().map((slide, presentableIndex) => (
                     <SlideComponent
                         key={slide.key}
+                        // @ts-ignore
                         content={slide.content}
                         moveSlide={moveSlide}
                         offsetRadius={clampOffsetRadius(offsetRadius)}

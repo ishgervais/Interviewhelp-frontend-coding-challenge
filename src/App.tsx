@@ -8,7 +8,7 @@ import { config } from "react-spring";
 import VerticalCarousel from "./components/VerticalCarousel";
 import { loadUserLogs, selectUserLogs } from './store/modules/userLogsSlice';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { formatUsers, loadUsers, selectCurrentOffset, selectCurrentStatus, selectFormatedUsers, selectSlides, selectUsers, sortUsers } from './store/modules/userSlice';
+import { formatUsers, loadUsers, selectCurrentOffset, selectCurrentStatus, selectFormatedUsers, selectUsers, sortUsers } from './store/modules/userSlice';
 
 function App() {
 
